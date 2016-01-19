@@ -42,15 +42,10 @@ def DAE(lr):
     cost1 = tf.nn.l2_loss(targets - l2)
     cost1 = tf.reduce_sum(cost1) / 60000 #samples
     
-    # evaluation = tf.reduce_mean(tf.abs(targets - l2))
-    #t_step = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(loss=cost2)
-    #t_step = tf.train.MomentumOptimizer(learning_rate=0.1,momentum=0.9).minimize(loss=cost2)
+
     t_step = tf.train.AdamOptimizer(learning_rate=lr).minimize(loss=cost1)
     
-    #t_step = tf.train.RMSPropOptimizer(learning_rate=0.1,decay=0.9,momentum=0.9).minimize(loss=cost2)
-    
-    
-    #print evaluation.eval(feed_dict={x:input,targets:targets_train})
+
 
     sess.run(tf.initialize_all_variables())
     for i in range(0,10):
@@ -103,19 +98,7 @@ def DAE(lr):
     print c3
     return c3
 
-# print "input"
-# print input[0:2]
-# print "recreated"
-# print l2.eval(feed_dict={x:input[0:2],targets:targets_train[0:2]})
-# print "input"
-# print targets_train[0:2]
 
-
-
-# print "outs"
-# print l2.eval(feed_dict={x:input,targets:targets_train})
-# print "code"
-# print l1.eval(feed_dict={x:input,targets:targets_train})
 
 
 lr = 0.001
